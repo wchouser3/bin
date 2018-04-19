@@ -1,0 +1,9 @@
+#!/bin/bash
+
+ echo "Performing Full System Upgrade" &&
+ sudo reflector --verbose --country 'United States' --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist &&
+ yaourt -Syyua --devel &&
+ sudo paccache -r &&
+ sudo paccache -ruk0 &&
+ sudo pacman-db-upgrade &&
+ sudo pacman-optimize

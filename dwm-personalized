@@ -1,0 +1,32 @@
+#!/bin/bash
+while true; do
+   xsetroot -name "$( date +"%A, %B %e, %l:%M %p" ) | dwm 6.1-3"
+   
+   sleep 1m    # Update time every minute
+    done &
+
+
+
+touchpad_toggle.sh &
+sleep 1s && lxpolkit &
+feh --bg-fill /home/wchouser3/Pictures/Wallpaper/dwm-archlinux-3.png &
+sleep 1s && /usr/bin/start-pulseaudio-x11 &
+sleep 2s && pcmanfm -d &
+dunst &
+sleep 1s && nm-applet &
+sleep 2s && volumeicon &
+sleep 8s && cbatticon &
+#sleep 9s && google-musicmanager &
+#sleep 10s && dropbox &
+#sleep 11s && megasync &
+
+
+
+
+
+
+
+
+
+
+exec dwm

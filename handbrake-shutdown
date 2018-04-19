@@ -1,0 +1,6 @@
+#!/bin/bash
+
+ghb &&
+notify-send 'System Shutting Down in 5 Minutes' &&
+sleep 5m &&
+shutdown -P -h now

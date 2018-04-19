@@ -1,0 +1,2 @@
+#!/bin/bash
+terminator -x sudo xfs_fsr -v /dev/sda3

@@ -1,0 +1,4 @@
+#!/bin/bash
+terminator -x bash -c "sudo e4defrag -v /dev/sda3 ;
+sudo e4defrag -v /dev/sda1 ;
+sleep 3m && systemctl poweroff"

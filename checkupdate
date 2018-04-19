@@ -1,0 +1,8 @@
+#!/bin/bash
+
+##Update the Mirrorlist 
+sudo reflector --verbose --country 'United States' -l 200 -p http --sort rate --save /etc/pacman.d/mirrorlist
+##Syncronize with Mirrors
+sudo pacman -Syy
+##List available updates
+yaourt -Qua
