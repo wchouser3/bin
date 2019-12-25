@@ -1,9 +1,7 @@
 #!/bin/bash
 
- echo "Performing Full System Upgrade" &&
+ echo "Generating Optimized Mirrorlist" &&
  sudo reflector --verbose --country 'United States' --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist &&
- yaourt -Syyua --devel &&
+ yay -Syu --noconfirm --devel &&
  sudo paccache -r &&
- sudo paccache -ruk0 &&
- sudo pacman-db-upgrade &&
- sudo pacman-optimize
+ sudo paccache -ruk0
