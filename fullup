@@ -1,7 +1,9 @@
 #!/bin/bash
 
  echo "Generating Optimized Mirrorlist" &&
- sudo reflector --verbose --country 'United States' --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist &&
+ sudo reflector --verbose --latest 5 --country 'United States' --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist &&
+ echo "Performing Full System Upgrade (including AUR, and development packages)" &&
  yay -Syu --noconfirm --devel &&
+ echo "Performing Package Cache Cleanup" &&
  sudo paccache -r &&
  sudo paccache -ruk0
