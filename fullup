@@ -1,9 +1,11 @@
 #!/bin/bash
 
- echo "Generating Optimized Mirrorlist" &&
+ sudo btrfs subvolume snapshot / /.snapshots/"$(date +"%m-%d-%Y-%H%M")" &&
+ echo "Generating Optimized Pacman Mirrorlist" &&
  sudo reflector --verbose --latest 5 --country 'United States' --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist &&
  echo "Performing Full System Upgrade (including AUR, and development packages)" &&
- yay -Syu --noconfirm --devel &&
+ yay -Syu --devel --noconfirm &&
  echo "Performing Package Cache Cleanup" &&
  sudo paccache -r &&
- sudo paccache -ruk0
+ sudo paccache -ruk0 &&
+ echo "System Update Complete!"
