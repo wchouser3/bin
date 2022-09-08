@@ -1,5 +1,8 @@
 #!/bin/bash
 
+##This is a script to fully update an Archlinux system and perform some cleanup tasks.
+##It requres the following additional packages: yay, reflector, pacman-contrib, and flatpak
+
 RED='\033[0;31m'
 BLUE='\033[0;34m'
 CYAN='\033[0;36m'
