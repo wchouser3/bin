@@ -6,21 +6,24 @@
 RED='\033[0;31m'
 BLUE='\033[0;34m'
 CYAN='\033[0;36m'
-WHITE='\033[1;37'
+WHITE='\033[1;37m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+LCYAN='\033[1;36m'
 NC='\033[0m' # No Color
 BOLD=$(tput bold)
 NORM=$(tput sgr0)
 
-echo -e "${WHITE}${BOLD}---Fullup!--- ${NC}${CYAN}${BOLD}Archlinux update script by William Houser${NC}" &&
+echo -e "${GREEN}${BOLD}---Fullup!--- ${NC}${CYAN}${BOLD}Archlinux update script by William Houser${NC}" &&
 sleep 2 &&
 #sudo btrfs subvolume snapshot / /.snapshots/"$(date +"%m-%d-%Y-%H%M")" &&
-echo -e "${CYAN}${BOLD}Generating Optimized Pacman Mirrorlist${NC}${NORM}" &&
+echo -e "${YELLOW}${BOLD}Generating Optimized Pacman Mirrorlist${NC}${NORM}" &&
 sudo reflector --verbose --latest 5 --country 'United States' --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist &&
-echo -e "${CYAN}${BOLD}Performing Full System Upgrade (including AUR, and development packages)${NC}${NORM}" &&
+echo -e "${YELLOW}${BOLD}Performing Full System Upgrade (including AUR, and development packages)${NC}${NORM}" &&
 yay -Syu --devel --noconfirm &&
-echo -e "${CYAN}${BOLD}Performing Package Cache Cleanup${NC}${NORM}" &&
+echo -e "${YELLOW}${BOLD}Performing Package Cache Cleanup${NC}${NORM}" &&
 sudo paccache -r &&
 sudo paccache -ruk0 &&
-echo -e "${CYAN}${BOLD}Finally - Updating Flatpaks!${NC}${NORM}" &&
+echo -e "${YELLOW}${BOLD}Finally - Updating Flatpaks!${NC}${NORM}" &&
 flatpak update -y &&
 echo -e "${RED}${BOLD}System Update Complete!${NC}"
