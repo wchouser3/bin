@@ -14,7 +14,7 @@ NC='\033[0m' # No Color
 BOLD=$(tput bold)
 NORM=$(tput sgr0)
 
-echo -e "${GREEN}${BOLD}---Fullup!--- ${NC}${CYAN}${BOLD}Archlinux update script by William Houser${NC}" &&
+echo -e "${GREEN}${BOLD}---Fullup!--- ${NC}${CYAN}${BOLD}Archlinux update script by William Houser${NC}${NORM}" &&
 sleep 2 &&
 #sudo btrfs subvolume snapshot / /.snapshots/"$(date +"%m-%d-%Y-%H%M")" &&
 echo -e "${YELLOW}${BOLD}Generating Optimized Pacman Mirrorlist${NC}${NORM}" &&
