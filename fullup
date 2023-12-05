@@ -27,3 +27,4 @@ sudo paccache -ruk0 &&
 echo -e "${YELLOW}${BOLD}Finally - Updating Flatpaks!${NC}${NORM}" &&
 flatpak update -y &&
 echo -e "${RED}${BOLD}System Update Complete!${NC}"
+end 0
