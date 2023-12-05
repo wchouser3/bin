@@ -19,3 +19,4 @@ sudo apt full-upgrade -y &&
 echo -e "${YELLOW}${BOLD}Performing Autoremove${NC}${NORM}" &&
 sudo apt autoremove -y &&
 echo -e "${RED}${BOLD}System Update Complete!!${NC}${NORM}"
+end 0
