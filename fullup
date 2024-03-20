@@ -17,14 +17,40 @@ NORM=$(tput sgr0)
 echo -e "${GREEN}${BOLD}---Fullup!--- ${NC}${CYAN}${BOLD}Archlinux update script by William Houser${NC}${NORM}" &&
 sleep 2 &&
 #sudo btrfs subvolume snapshot / /.snapshots/"$(date +"%m-%d-%Y-%H%M")" &&
-echo -e "${YELLOW}${BOLD}Generating Optimized Pacman Mirrorlist${NC}${NORM}" &&
-sudo reflector --verbose --latest 5 --country 'United States' --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist &&
+echo -e "${YELLOW}${BOLD}Generating Optimized Pacman Mirrorlist For US (if you require a mirror list from another locale, edit the script accordingly)${NC}${NORM}" &&
+if command -v reflector
+then
+    sudo reflector --verbose --latest 5 --country 'United States' --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist &&
+else
+    echo -e "${RED}${BOLD}Reflector is not installed on this system - Installing now${NC}${NORM}" &&
+    sudo pacman -Sy reflector --noconfirm &&
+    sudo reflector --verbose --latest 5 --country 'United States' --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist &&
+fi
 echo -e "${YELLOW}${BOLD}Performing Full System Upgrade (including AUR, and development packages)${NC}${NORM}" &&
-yay -Syu --devel --noconfirm &&
+if command -v yay
+then
+    yay --devel --noconfirm &&
+else
+    echo -e "${RED}${BOLD}Yay is not installed on this machine - Installing Now${NC}${NORM}" &&
+    wget https://aur.archlinux.org/cgit/aur.git/snapshot/yay.tar.gz &&
+    tar -xvzf yay.tar.gz &&
+    cd yay/ &&
+    makepkg -isc --noconfirm &&
+    cd ~/ &&
+    yay --devel --noconfirm &&
+fi
 echo -e "${YELLOW}${BOLD}Performing Package Cache Cleanup${NC}${NORM}" &&
-sudo paccache -r &&
-sudo paccache -ruk0 &&
+if command -v paccache
+then
+    sudo paccache -r &&
+    sudo paccache -ruk0 &&
+else
+    echo -e "${RED}${BOLD}pacman-contrib not installed on this machine - Installing now${NC}${NORM}" &&
+    sudo pacman -Sy pacman-contrib --noconfirm &&
+    sudo paccache -r &&
+    sudo paccache -ruk0 &&
+fi
 echo -e "${YELLOW}${BOLD}Finally - Updating Flatpaks!${NC}${NORM}" &&
 flatpak update -y &&
 echo -e "${RED}${BOLD}System Update Complete!${NC}"
-exit 0
+exit
