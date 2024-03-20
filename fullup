@@ -17,7 +17,7 @@ NORM=$(tput sgr0)
 
 echo -e "${GREEN}${BOLD}---Fullup!--- ${NC}${CYAN}${BOLD}Archlinux update script by William Houser${NC}${NORM}"
 sleep 2 &&
-#sudo btrfs subvolume snapshot / /.snapshots/"$(date +"%m-%d-%Y-%H%M")" &&
+#sudo btrfs subvolume snapshot / /.snapshots/"$(date +"%m-%d-%Y-%H%M")"
 echo -e "${YELLOW}${BOLD}Generating Optimized Pacman Mirrorlist For US ${NC}${NORM}${RED}${BOLD}(if you require a mirror list from another locale edit the script accordingly)${NC}${NORM}"
 sleep 1 &&
 if command -v reflector >> /dev/null
